@@ -85,8 +85,8 @@ async def start(message: types.Message, command: filters.CommandObject):
     else:
         await message.reply(f'здесь я должен написать рецепт для полного совпадения')
 
-    # Здесь начинается проблема: и так далее конструкция из if, elif, else для всевозможных вариантов запроса
-    # пользователя по command.args а их ооооочень много!
+    # Здесь начинается проблема: и так далее конструкция из if, elif, else для всевозможных вариантов запроса от
+    # пользователя по command.args, а их ооооочень много!
 
 
 @dp.message(F.text)
