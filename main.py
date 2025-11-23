@@ -114,8 +114,8 @@ def validity(attribute):
 
 
 def coincidence(attribute):
-    res = set(attribute.split()) & set(ingredients_dict().values())
-    return res
+    result = set(attribute.split()) & set(ingredients_dict().values())
+    return result
 
 
 def food_recipes():
