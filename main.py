@@ -88,11 +88,39 @@ async def start(message: types.Message, command: filters.CommandObject):
     # Здесь начинается проблема: и так далее конструкция из if, elif, else для всевозможных вариантов запроса от
     # пользователя по command.args, а их ооооочень много!
 
+@dp.message(filters.Command('popular'))
+async def pay_for_delivery(message: types.Message):
+    keyboard = [
+        [types.KeyboardButton(text='Хлеб, бекон, яйцо')],
+        [types.KeyboardButton(text='Творог, сметана, хлеб, сыр')],
+        [types.KeyboardButton(text='Бекон, яйцо, томаты, огурцы, зелень')],
+        [types.KeyboardButton(text='Бекон, картофель, лук, томаты, огурцы, хлеб')]
+    ]
+
+    await message.reply(
+        "Выберете рецепт из стандартного набора",
+        reply_markup=types.ReplyKeyboardMarkup(
+            keyboard=keyboard,
+            resize_keyboard=True,
+        )
+    )
+
+
+@dp.message(lambda message: message.text in ['/find Хлеб бекон яйцо',
+                       'Творог сметана хлеб сыр',
+                       'Бекон яйцо томаты огурцы зелень',
+                       'Бекон картофель лук томаты огурцы хлеб'])
+async def pay_for_delivery_with_card(message: types.Message):
+    await message.reply(
+        f'Одно из 4х кнопок',
+        reply_markup=types.ReplyKeyboardRemove()
+    )
+
 
 @dp.message(F.text)
 async def no_name_command(message: types.Message):
     await message.reply(f'Вы ввели команду:\n__*{message.text}*__\nданная команда мне не известна⁉️ 🤔\n\n'
-                        f'попробуйте ещё раз 👐, у вас обязательно получится 👇', parse_mode="MarkdownV2")
+                        f'попробуйте ещё раз ✍️, у вас обязательно получится 👇', parse_mode="MarkdownV2")
 
 
 def ingredients_dict():
