@@ -110,19 +110,19 @@ async def pay_for_delivery(message: types.Message):
 async def pay_for_delivery_with_card(message: types.Message):
     if message.text == 'хлеб бекон яйцо':
         await message.reply(
-        f'Хороший выбор👍\nваш рецепт:\n{food_recipes()[50]}\nХорошего дня☺️',
+        f'Хороший выбор👍\nваш рецепт:\n{food_recipes()[50]}\n\nХорошего дня☺️',
         reply_markup=types.ReplyKeyboardRemove())
     elif message.text == 'творог сметана хлеб сыр':
         await message.reply(
-            f'Лёгкий завтрак👍\nваш рецепт:\n{food_recipes()[51]}\nХорошего дня☺️',
+            f'Лёгкий завтрак👍\nваш рецепт:\n{food_recipes()[51]}\n\nХорошего дня☺️',
             reply_markup=types.ReplyKeyboardRemove())
     elif message.text == 'бекон яйцо томаты огурцы зелень':
         await message.reply(
-            f'Прекрасный выбор👍\nваш рецепт:\n{food_recipes()[52]}\nХорошего дня☺️',
+            f'Прекрасный выбор👍\nваш рецепт:\n{food_recipes()[52]}\n\nХорошего дня☺️',
             reply_markup=types.ReplyKeyboardRemove())
     else:
         await message.reply(
-            f'Сытный завтрак👍\nваш рецепт:\n{food_recipes()[53]}\nХорошего дня☺️',
+            f'Сытный завтрак👍\nваш рецепт:\n{food_recipes()[53]}\n\nХорошего дня☺️',
             reply_markup=types.ReplyKeyboardRemove())
 
 
