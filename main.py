@@ -91,10 +91,10 @@ async def start(message: types.Message, command: filters.CommandObject):
 @dp.message(filters.Command('popular'))
 async def pay_for_delivery(message: types.Message):
     keyboard = [
-        [types.KeyboardButton(text='хлеб, бекон, яйцо')],
-        [types.KeyboardButton(text='творог, сметана, хлеб, сыр')],
-        [types.KeyboardButton(text='бекон, яйцо, томаты, огурцы, зелень')],
-        [types.KeyboardButton(text='бекон, картофель, лук, томаты, огурцы, хлеб')]
+        [types.KeyboardButton(text='хлеб бекон яйцо')],
+        [types.KeyboardButton(text='творог сметана хлеб сыр')],
+        [types.KeyboardButton(text='бекон яйцо томаты огурцы зелень')],
+        [types.KeyboardButton(text='бекон картофель лук томаты огурцы хлеб')]
     ]
 
     await message.reply(
@@ -108,21 +108,21 @@ async def pay_for_delivery(message: types.Message):
 
 @dp.message(F.text.lower())
 async def pay_for_delivery_with_card(message: types.Message):
-    if F.text.lower() == 'хлеб бекон яйцо':
+    if message.text == 'хлеб бекон яйцо':
         await message.reply(
-        f'ваш рецепт:\n{food_recipes()[50]}',
+        f'Хороший выбор👍\nваш рецепт:\n{food_recipes()[50]}\nХорошего дня☺️',
         reply_markup=types.ReplyKeyboardRemove())
-    elif F.text.lower() == 'творог сметана хлеб сыр':
+    elif message.text == 'творог сметана хлеб сыр':
         await message.reply(
-            f'ваш рецепт:\n{food_recipes()[51]}',
+            f'Лёгкий завтрак👍\nваш рецепт:\n{food_recipes()[51]}\nХорошего дня☺️',
             reply_markup=types.ReplyKeyboardRemove())
-    elif F.text.lower() == 'бекон яйцо томаты огурцы зелень':
+    elif message.text == 'бекон яйцо томаты огурцы зелень':
         await message.reply(
-            f'ваш рецепт:\n{food_recipes()[52]}',
+            f'Прекрасный выбор👍\nваш рецепт:\n{food_recipes()[52]}\nХорошего дня☺️',
             reply_markup=types.ReplyKeyboardRemove())
     else:
         await message.reply(
-            f'ваш рецепт:\n{food_recipes()[53]}',
+            f'Сытный завтрак👍\nваш рецепт:\n{food_recipes()[53]}\nХорошего дня☺️',
             reply_markup=types.ReplyKeyboardRemove())
 
 
