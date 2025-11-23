@@ -91,10 +91,10 @@ async def start(message: types.Message, command: filters.CommandObject):
 @dp.message(filters.Command('popular'))
 async def pay_for_delivery(message: types.Message):
     keyboard = [
-        [types.KeyboardButton(text='Хлеб, бекон, яйцо')],
-        [types.KeyboardButton(text='Творог, сметана, хлеб, сыр')],
-        [types.KeyboardButton(text='Бекон, яйцо, томаты, огурцы, зелень')],
-        [types.KeyboardButton(text='Бекон, картофель, лук, томаты, огурцы, хлеб')]
+        [types.KeyboardButton(text='хлеб, бекон, яйцо')],
+        [types.KeyboardButton(text='творог, сметана, хлеб, сыр')],
+        [types.KeyboardButton(text='бекон, яйцо, томаты, огурцы, зелень')],
+        [types.KeyboardButton(text='бекон, картофель, лук, томаты, огурцы, хлеб')]
     ]
 
     await message.reply(
@@ -106,15 +106,24 @@ async def pay_for_delivery(message: types.Message):
     )
 
 
-@dp.message(lambda message: message.text in ['/find Хлеб бекон яйцо',
-                       'Творог сметана хлеб сыр',
-                       'Бекон яйцо томаты огурцы зелень',
-                       'Бекон картофель лук томаты огурцы хлеб'])
+@dp.message(F.text.lower())
 async def pay_for_delivery_with_card(message: types.Message):
-    await message.reply(
-        f'Одно из 4х кнопок',
-        reply_markup=types.ReplyKeyboardRemove()
-    )
+    if F.text.lower() == 'Хлеб бекон яйцо':
+        await message.reply(
+        f'ваш рецепт:\n{food_recipes()[50]}',
+        reply_markup=types.ReplyKeyboardRemove())
+    elif F.text.lower() == 'Творог сметана хлеб сыр':
+        await message.reply(
+            f'ваш рецепт:\n{food_recipes()[51]}',
+            reply_markup=types.ReplyKeyboardRemove())
+    elif F.text.lower() == 'Бекон яйцо томаты огурцы зелень':
+        await message.reply(
+            f'ваш рецепт:\n{food_recipes()[52]}',
+            reply_markup=types.ReplyKeyboardRemove())
+    else:
+        await message.reply(
+            f'ваш рецепт:\n{food_recipes()[53]}',
+            reply_markup=types.ReplyKeyboardRemove())
 
 
 @dp.message(F.text)
@@ -150,10 +159,16 @@ def food_recipes():
     dict_food_recipes = {
         1: '1️⃣ Омлет с сыром, бутерброд с кофе или чаем;\n'
            '2️⃣ Жареные помидоры с яйцом и беконом, бутерброд с кофе или чаем\n'
-           '3️⃣ Творог с сахаром и изюмом, кофе или чай с печеньем'
+           '3️⃣ Творог с сахаром и изюмом, кофе или чай с печеньем',
+        50: 'Жареные тосты из хлеба с беконом, варёное яйцо, чай или кофе',
+        51: 'Творог со сметаной и сахаром, хлеб с сыром, чай или кофе',
+        52: 'Жареные яйца с беконом и томатами, салат с огурцами и зеленью, чай или кофе',
+        53: 'Жареный картофель с луком и беконом, салат с огурцами, томатами и луком, чай или кофе'
+
     }
     return dict_food_recipes
-
+# ['Хлеб бекон яйцо', 'Творог сметана хлеб сыр',
+# 'Бекон яйцо томаты огурцы зелень', 'Бекон картофель лук томаты огурцы хлеб']
 
 async def main():
     await dp.start_polling(bot)
