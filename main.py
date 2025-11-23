@@ -81,7 +81,7 @@ async def start(message: types.Message, command: filters.CommandObject):
         await message.reply(
             f'Таких ингредиентов: {', '.join(option)} - нет в моём списке❗ но я могу составить рецепт из:\n'
             f'{', '.join(res)}\nвот ваш рецепт:\n'
-            f'тут я указываю рецепт из совпадений')
+            f'тут я указываю рецепт для частичного совпадений')
     else:
         await message.reply(f'здесь я должен написать рецепт для полного совпадения')
 
