@@ -108,15 +108,15 @@ async def pay_for_delivery(message: types.Message):
 
 @dp.message(F.text.lower())
 async def pay_for_delivery_with_card(message: types.Message):
-    if F.text.lower() == 'Хлеб бекон яйцо':
+    if F.text.lower() == 'хлеб бекон яйцо':
         await message.reply(
         f'ваш рецепт:\n{food_recipes()[50]}',
         reply_markup=types.ReplyKeyboardRemove())
-    elif F.text.lower() == 'Творог сметана хлеб сыр':
+    elif F.text.lower() == 'творог сметана хлеб сыр':
         await message.reply(
             f'ваш рецепт:\n{food_recipes()[51]}',
             reply_markup=types.ReplyKeyboardRemove())
-    elif F.text.lower() == 'Бекон яйцо томаты огурцы зелень':
+    elif F.text.lower() == 'бекон яйцо томаты огурцы зелень':
         await message.reply(
             f'ваш рецепт:\n{food_recipes()[52]}',
             reply_markup=types.ReplyKeyboardRemove())
