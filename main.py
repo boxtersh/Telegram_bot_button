@@ -1,9 +1,10 @@
 # Домашние задания по Telegram‑ботам №1
 # Вариант 4 — RecipeSuggest (рецепты по продуктам)
-import token_file as tk
+
 import asyncio
 import aiogram
 from aiogram import filters, F, types
+import token_file as tk
 
 
 def token():
