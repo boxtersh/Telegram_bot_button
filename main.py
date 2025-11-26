@@ -4,7 +4,6 @@ import token_file as tk
 import asyncio
 import aiogram
 from aiogram import filters, F, types
-from aiogram.filters import Command, CommandObject
 
 
 def token():
@@ -83,14 +82,14 @@ async def start(message: types.Message, command: filters.CommandObject):
             f'Таких ингредиентов:\n{';\n'.join(' - ' + elm for elm in validity(command.args))}.\nнет в моём списке❗\n\n'
             f'Но я могу составить рецепт из:\n'
             f'{', '.join(res)}.\nВот ваш рецепт:\n\n'
-            f'{'\n'.join(food_recipes()[key] for key in res)}')
+            f'{'\n'.join(food_recipes()[key] for key in res)}\nBon appétit 👨‍🍳')
 
     elif not validity(command.args):
         reply_text = (f'Все указанное вами есть в моём списке!\n\n'
                       f'Вот ваш рецепт:\n'
-                      f'{'\n'.join(food_recipes()[key] for key in command.args.split())}')
+                      f'{'\n'.join(food_recipes()[key] for key in command.args.split())}\nBon appétit 👨‍🍳')
 
-    await message.reply(f'{reply_text}\nBon appétit 👨‍🍳')
+    await message.reply(f'{reply_text}\n')
 
 
 @dp.message(filters.Command('popular'))
