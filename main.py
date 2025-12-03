@@ -31,6 +31,18 @@ async def start(message: types.Message):
                         reply_markup=types.InlineKeyboardMarkup(inline_keyboard=keyboard))
 
 
+@dp.callback_query(lambda butt: butt.data in ['yes', 'no'])
+async def process_callback(callback_query: types.CallbackQuery):
+    await callback_query.answer()
+
+    if callback_query.data == 'yes':
+        await callback_query.message.answer(f'Отлично! Давайте продолжим.\n\n'
+                                            f'Ожидаю от вас команду 👇')
+    elif callback_query.data == 'no':
+        await callback_query.message.answer(f'Жаль😟\nВозможно позже вы воспользуетесь моими услугами😉\n'
+                                            f'Всего наилучшего!👋')
+
+
 @dp.message(filters.Command('product'))
 async def start(message: types.Message):
     await message.reply(f'Ингредиенты 🍆🧄🥔🍅 из которых помогу составить рецепт:\n'
@@ -46,18 +58,6 @@ async def start(message: types.Message):
                         f'/find - поиск рецепта по указанным ингредиентам\nнапример:\n/find яйцо хлеб\n'
                         f'/popular - наборы популярных ингредиентов, с последующим выводом рецептов;\n'
                         f'/quick - выбор отображения "Быстрый рецепт" или "Подробный"')
-
-
-@dp.callback_query(lambda butt: butt.data in ['yes', 'no'])
-async def process_callback(callback_query: types.CallbackQuery):
-    await callback_query.answer()
-
-    if callback_query.data == 'yes':
-        await callback_query.message.answer(f'Отлично! Давайте продолжим.\n\n'
-                                            f'Ожидаю от вас команду 👇')
-    elif callback_query.data == 'no':
-        await callback_query.message.answer(f'Жаль😟\nВозможно позже вы воспользуетесь моими услугами😉\n'
-                                            f'Всего наилучшего!👋')
 
 
 @dp.message(filters.Command('find'))
