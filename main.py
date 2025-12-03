@@ -7,11 +7,7 @@ from aiogram import filters, F, types
 import token_file as tk
 
 
-def token():
-    return tk.token
-
-
-bot = aiogram.Bot(token=token())
+bot = aiogram.Bot(token=tk.token())
 dp = aiogram.Dispatcher()
 
 
